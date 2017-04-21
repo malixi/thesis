@@ -12,7 +12,7 @@ if(isset($_POST['btn-login']))
 {
 	$email = trim($_POST['txtemail']);
 	$upass = trim($_POST['txtupass']);
-
+	
 	if($user_login->login($email,$upass))
 	{
 		$user_login->redirect('home.php');
@@ -23,7 +23,7 @@ if(isset($_POST['btn-login']))
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Llanes Farm | Admin</title>
+    <title>Login | Coding Cage</title>
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
@@ -36,13 +36,13 @@ if(isset($_POST['btn-login']))
   </head>
   <body id="login">
     <div class="container">
-		<?php
+		<?php 
 		if(isset($_GET['inactive']))
 		{
 			?>
             <div class='alert alert-error'>
 				<button class='close' data-dismiss='alert'>&times;</button>
-				<strong>Sorry!</strong> This Account is not Activated Go to your Inbox and Activate it.
+				<strong>Sorry!</strong> This Account is not Activated Go to your Inbox and Activate it. 
 			</div>
             <?php
 		}
@@ -54,7 +54,7 @@ if(isset($_POST['btn-login']))
 			?>
             <div class='alert alert-success'>
 				<button class='close' data-dismiss='alert'>&times;</button>
-				<strong>Wrong Details!</strong>
+				<strong>Wrong Details!</strong> 
 			</div>
             <?php
 		}
