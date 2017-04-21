@@ -133,18 +133,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
                         <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="#" class="active"><i class="fa fa-sitemap fa-fw"></i> Product<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="addproductpage.php" class="active">Add</a>
-                            </li>
-                            <li>
-                                <a href="editproductpage.php">Edit</a>
-                            </li>
-                            <li>
-                                <a href="deleteproductpage.php">Delete</a>
-                            </li>
-                        </ul>
+                        <a href="viewproductpage.php"><i class="fa fa-dashboard fa-fw"></i> Product</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
