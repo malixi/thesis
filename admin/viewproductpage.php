@@ -133,18 +133,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
                         <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="#" class="active"><i class="fa fa-sitemap fa-fw"></i> Product<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="addproductpage.php">Add</a>
-                            </li>
-                            <li>
-                                <a href="editproductpage.php">Edit</a>
-                            </li>
-                            <li>
-                                <a href="deleteproductpage.php" class="active">Delete</a>
-                            </li>
-                        </ul>
+                        <a href="viewproductpage.php"><i class="fa fa-dashboard fa-fw"></i>Product</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
@@ -171,53 +160,68 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
     <!-- Page Content -->
     <div id="page-wrapper">
         <div class="container-fluid">
+
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Delete Product</h1>
+                    <h1 class="page-header">Add Product</h1>
                 </div>
             </div>
 
+            <?php 
+
+            ?>
+
             <!-- ... Your content goes here ... -->
             <div class="row">
-            	<div class="col-lg-6">
-	            	<form role="form" action="delproductprocess.php" method="post" >
-	                    <div class="form-group">
-	                        <label>Product ID</label>
-	                        <?php
-	                            $stmt = "SELECT * FROM products WHERE productID";
-	                            $res = mysqli_query($dbconn, $stmt);
+                <form role="form" action="addproductpage.php" method="post">
+                    <input type="submit" class="btn btn-primary" value="Add Products" name="submit">
+                    <hr>
+                </form>
 
-	                            if (mysqli_num_rows($res) > 0) {
-	                                echo "<select class='form-control' name='delprod' id='delprod'>";
-	                                while($row = mysqli_fetch_assoc($res)) {
-	                                    echo "<option value=".$row['productID'].">" .$row['name']. "</option>";
-	                                }
-	                                echo "</select>";
-	                            } else {
-	                                echo "<select class='form-control'><option value=''>No Products listed.</option></select>";
-	                            }
-	                        ?>
-	                    </div>
-			            <div class="form-group">
-		                    <input type="submit" class="btn btn-primary" value="Delete" name="submit">
-						</div>
-	                </form>
-                </div>
-			</div>
-            	<?php 
-            		$stmt = "SELECT * FROM products";
-            		$result = mysqli_query($dbconn, $stmt);
-            		echo "<table class='table table-responsive table-bordered'>";
-            		echo "<tr><th>Product ID</th><th>Product Name</th><th>Date Created</th>";
-            		while($row = mysqli_fetch_array($result)){
-            			$prodID = $row['productID'];
-            			$prodName = $row['name'];
-            			$prodDateCreated = $row['date_created'];
-            			echo "<tr><td>".$prodID."</td><td>".$prodName."</td><td>".$prodDateCreated."</td></tr>";
-            		}
-            	?>
+                <?php
+                $results = mysqli_query ($dbconn,'SELECT * FROM products');
+
+                echo "<table class='table table.bordered'>
+                    <thead>
+                        <tr>
+                            <th>Product ID</th>
+                            <th>Product Name</th>
+                            <th>Product Date Created</th>
+                            <th>Product Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+
+                if($results->num_rows > 0) {
+
+                while($row = mysqli_fetch_array($results)){
+                    echo
+                        "<tr>
+                                <td>" .$row['productID']. "</td>
+                                <td>" .$row['name']. "</td>
+                                <td>" .$row['date_created']. "</td>
+                                <td>
+                                    <form method='POST' action='editproductpage.php'>
+                                        <input type='hidden' name='PNAME' value='".$row['productID']."' />
+                                        <input type='submit' class='btn btn-primary' value='Edit' name='submit'>
+                                    </form>
+                                    <form method='POST' action='delproductprocess.php'>
+                                        <input type='hidden' name='PNAME' value='".$row['productID']."' />
+                                        <input type='submit' class='btn btn-primary' value='Delete' name='submit'>
+                                    </form>
+                                </td>
+                            </tr>";
+                    }
+                }
+
+                echo "</tbody>
+                    </table>";
+                ?>
+            </div>
+
         </div>
     </div>
+
 </div>
 
 <!-- jQuery -->

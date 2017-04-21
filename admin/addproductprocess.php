@@ -24,7 +24,7 @@
 		$stmt2->bind_param('isdbsis', $prodID, $prodName, $prodPrice, $prodImage, $prodDesc, $prodQty, $prodCreated);
 		$stmt2->execute();
 		echo"<script>window.alert('Product added.');</script>";
-		echo"<script>location.href='addproductpage.php';</script>";
+		echo"<script>location.href='viewproductpage.php';</script>";
 	}
 
 ?>
