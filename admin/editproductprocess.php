@@ -4,13 +4,13 @@
 	require_once('connector.php');
 	
 	
-	$prodID=$_POST['addID'];
-	$prodName=$_POST['addname'];
-	$prodPrice=$_POST['addprice'];
+	$prodID=$_POST['editID'];
+	$prodName=$_POST['editname'];
+	$prodPrice=$_POST['editprice'];
 	$prodImage=$_POST['fileToUpload'];
-	$prodDesc=$_POST['adddescription'];
-	$prodQty=$_POST['addquantity'];
-	$prodCreated=$_POST['adddate_created'];
+	$prodDesc=$_POST['editdescription'];
+	$prodQty=$_POST['editquantity'];
+	$prodCreated=$_POST['editdate_created'];
 
 	$stmt = $dbconn->prepare('SELECT * FROM products WHERE productID = ?');
 	$stmt->bind_param('s', $prodID);
@@ -22,10 +22,10 @@
 		$stmt2->execute();
 
 		echo"<script>window.alert('Product updated.');</script>";
-		echo"<script>location.href='editProductPage.php';</script>";
+		echo"<script>location.href='viewproductpage.php';</script>";
 	} else {
 		echo"<script>window.alert('Product Code incorrect');</script>";
-		echo"<script>location.href='editProductPage.php';</script>";
+		echo"<script>location.href='viewproductpage.php';</script>";
 	}
 
 ?>

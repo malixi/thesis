@@ -2,7 +2,7 @@
 	session_start();
 	require_once('connector.php');
 
-	$prodID=$_POST['delprod'];
+	$prodID=$_POST['PNAME'];
 
 	$stmt = $dbconn->prepare('SELECT * FROM products WHERE productID = ?');
 	$stmt->bind_param('i', $prodID);
@@ -14,9 +14,9 @@
 		$stmt2->execute();
 
 		echo"<script>window.alert('Product deleted.');</script>";
-		echo"<script>location.href='deleteproductpage.php';</script>";
+		echo"<script>location.href='viewproductpage.php';</script>";
 	} else {
 		echo"<script>window.alert('Product Code incorrect');</script>";
-		echo"<script>location.href='deleteproductpage.php';</script>";
+		echo"<script>location.href='viewproductpage.php';</script>";
 	}
 ?>

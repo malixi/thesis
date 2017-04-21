@@ -25,7 +25,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Llanes Farm | Edit</title>
+    <title>Startmin - Bootstrap Admin Theme</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -133,18 +133,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
                         <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="#" class="active"><i class="fa fa-sitemap fa-fw"></i> Product<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="addproductpage.php">Add</a>
-                            </li>
-                            <li>
-                                <a href="editproductpage.php" class="active">Edit</a>
-                            </li>
-                            <li>
-                                <a href="deleteproductpage.php">Delete</a>
-                            </li>
-                        </ul>
+                        <a href="viewproductpage.php"><i class="fa fa-dashboard fa-fw"></i> Product</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
@@ -179,52 +168,80 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
             </div>
 
             <!-- ... Your content goes here ... -->
-            <div class="row">
+                <?php 
+                    $prodID=$_POST['PNAME'];
+                    $result = mysqli_query($dbconn ,"SELECT * FROM products WHERE productID = '". $prodID . "' LIMIT 1");
+                    $row = mysqli_fetch_assoc($result);
+                    echo "<div class='col-lg-6'>
+                    <form role='form' action='editproductprocess.php' method='post'>
+                        <div class='form-group'>
+                            <label>Product ID</label>
+                            <input type='number' class='form-control' maxlength='6' value=".$row['productID']." required readonly>
+                        </div>
+                        <div class='form-group'>
+                            <label>Product Name</label>
+                            <input type='text' class='form-control' maxlength='50' value=".$row['name']." required readonly>
+                        </div>
+                        <div class='form-group'>
+                            <label>Product Price</label>
+                            <input type='number' class='form-control' value=".$row['price']." required readonly>
+                        </div>
+                        <div class='form-group'>
+                            <label>Product Quantity</label>
+                            <input type='number' class='form-control' maxlength='100' value=".$row['quantity']." required readonly>
+                        </div>
+                        <div class='form-group'>
+                            <label>Product Date Created</label>
+                            <input type='date' class='form-control' maxlength='50' value=".$row['date_created']." required readonly>
+                        </div>
+                        <div class='form-group'>
+                        <label>Product Image</label>
+                            <input type='file' name='fileToUpload' id='fileToUpload' maxlength='200'>
+                        </div>
+                        <div class='form-group'>
+                            <label>Product Description</label>
+                            <textarea class='form-control' rows='10' maxlength='100' required readonly>".$row['description']."</textarea>
+                        </div>
+                        <hr>
+                    </form>
+                </div>";
+                ?>
+                <div class="row">
                 <div class="col-lg-6">
                     <form role="form" action="editproductprocess.php" method="post">
                         <div class="form-group">
                             <label>Product ID</label>
-                            <input type="number" class="form-control" name="addID" id="addID" required maxlength="6">
+                            <input type="number" class="form-control" name="editID" id="editID" <?php echo "value='".$row['productID']."'" ?> maxlength="6" required readonly>
                         </div>
                         <div class="form-group">
                             <label>Product Name</label>
-                            <input type="text" class="form-control" name="addname" id="addname" required maxlength="50">
+                            <input type="text" class="form-control" name="editname" id="editname" required maxlength="50">
                         </div>
                         <div class="form-group">
                             <label>Product Price</label>
-                            <input type="number" class="form-control" name="addprice" id="addprice" required>
+                            <input type="number" class="form-control" name="editprice" id="editprice" required>
                         </div>
                         <div class="form-group">
                             <label>Product Quantity</label>
-                            <input type="number" class="form-control" name="addquantity" id="addquantity" required maxlength="100">
+                            <input type="number" class="form-control" name="editquantity" id="edituantity" required maxlength="100">
+                        </div>
+                        <div class="form-group">
+                            <label>Product Date Created</label>
+                            <input type="date" class="form-control" name="editdate_created" id="editdate_created" <?php echo "value='".$row['date_created']."'" ?> maxlength="50" required readonly>
                         </div>
                         <div class="form-group">
                         <label>Product Image</label>
                             <input type="file" name="fileToUpload" id="fileToUpload" maxlength="200">
                         </div>
-                </div>
-                <div class="col-lg-6">
                         <div class="form-group">
                             <label>Product Description</label>
-                            <textarea class="form-control" rows="10" placeholder="Main Description" name="adddescription" id="adddescription" maxlength="500"></textarea>
+                            <textarea class="form-control" rows="10" placeholder="Main Description" name="editdescription" id="editdescription" maxlength="500"></textarea>
                         </div>
                         <input type="submit" class="btn btn-primary" value="Edit" name="submit">
                         <input type="reset" class="btn btn-default" value="Reset">
                         <hr>
                     </form>
                 </div>
-                <?php
-            		$stmt = "SELECT * FROM products";
-            		$result = mysqli_query($dbconn, $stmt);
-            		echo "<table class='table table-responsive table-bordered'>";
-            		echo "<tr><th>Product ID</th><th>Product Name</th><th>Date Created</th>";
-            		while($row = mysqli_fetch_array($result)){
-            			$prodID = $row['productID'];
-            			$prodName = $row['name'];
-            			$prodDateCreated = $row['date_created'];
-            			echo "<tr><td>".$prodID."</td><td>".$prodName."</td><td>".$prodDateCreated."</td></tr>";
-            		}
-            	?>
             </div>
 
         </div>
