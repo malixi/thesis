@@ -30,7 +30,7 @@ if(isset($_POST['btn-submit']))
 				   <br /><br />
 				   Click Following Link To Reset Your Password
 				   <br /><br />
-				   <a href='http://localhost/ThesisFinal/admin/resetpass.php?id=$id&code=$code'>click here to reset your password</a>
+				   <a href='http://localhost/thesis/admin/resetpass.php?id=$id&code=$code'>click here to reset your password</a>
 				   <br /><br />
 				   thank you :)
 				   ";
