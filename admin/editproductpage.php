@@ -25,7 +25,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Llanes Farm | Edit</title>
+    <title>Startmin - Bootstrap Admin Theme</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -213,7 +213,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
                         <hr>
                     </form>
                 </div>
-                <?php
+                <?php 
             		$stmt = "SELECT * FROM products";
             		$result = mysqli_query($dbconn, $stmt);
             		echo "<table class='table table-responsive table-bordered'>";
