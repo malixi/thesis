@@ -11,6 +11,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
+<script src="js/starrating.js"></script>
 <!-- Custom Theme files -->
 <!--theme-style-->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -83,34 +84,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		  <div class=" h_menu4">
 &nbsp;&nbsp;&nbsp;
 				<ul class="memenu skyblue">
-					  <li><a class="color8" href="index.html">ABOUT US</a></li>
-				      <li><a class="color1" href="#">PRODUCTS</a>
-				      	<div class="mepanel">
-						<div class="row">
-							<div class="col1">
-								<div class="h_nav">
-									<ul>
-										<li><a href="products.html">Lorem Ipsum</a></li>
-										<li><a href="products.html">Lorem Ipsum</a></li>
-										<li><a href="products.html">Lorem Ipsum</a></li>
-										<li><a href="products.html">Lorem Ipsum</a></li>
-										<li><a href="products.html">Lorem Ipsum</a></li>
-										<li><a href="products.html">Lorem Ipsum</a></li>
-										<li><a href="products.html">Lorem Ipsum</a></li>
-										<li><a href="products.html">Lorem Ipsum</a></li>
-										<li><a href="products.html">Lorem Ipsum</a></li>
-										<li><a href="products.html">Pillow Protector</a></li>
+					<li><a class="color8" href="about.html"><strong>ABOUT US</strong></a></li>
+						<li><a class="color1" href="products.html">PRODUCTS</a>
+							<div class="mepanel">
+					<div class="row">
+						<div class="col1">
+							<div class="h_nav">
+								<ul>
+									<li><a href="bananaproducts.html">Banana</a></li>
+									<li><a href="cocoaproducts.html">Cocoa</a></li>
+									<li><a href="coconutproducts.html">Coconut</a></li>
+									<li><a href="herbalproducts.html">Herbal</a></li>
+									<li><a href="mangoproducts.html">Mango</a></li>
+									<li><a href="pineappleproducts.html">Pineapple</a></li>
 
-									</ul>
-								</div>
+								</ul>
 							</div>
+						</div>
 
-					</li>
+				</li>
 
-				<li><a class="color4" href="login.html">SERVICES</a></li>
+				<li><a class="color4" href="services.html">SERVICES</a></li>
 				<li><a class="color6" href="contact.html">CONTACT</a></li>
-			  </ul>
-			</div>
+				</ul>
+				</div>
 
 				<div class="clearfix"> </div>
 		</div>
@@ -187,6 +184,27 @@ $(window).load(function() {
 										<li>100 grams packaging with local label</li>
 										<li>can be packed in big plastic without the label for bulk orders </li>
 									</ul></p>
+
+									<div class="container">
+										<div class="row">
+											<h2>Working Star Ratings for Bootstrap 3 <small>Hover and click on a star</small></h2>
+										</div>
+									    <div class="row lead">
+									        <div id="hearts" class="starrr"></div>
+									        You gave a rating of <span id="count">0</span> star(s)
+										</div>
+
+									    <div class="row lead">
+									        <p>Also you can give a default rating by adding attribute data-rating</p>
+									        <div id="hearts-existing" class="starrr" data-rating='4'></div>
+									        You gave a rating of <span id="count-existing">4</span> star(s)
+									    </div>
+									</div>
+
+
+
+
+
 							<div class="available">
 								<ul>
 									<li>
@@ -228,21 +246,22 @@ $(window).load(function() {
 				<div class="col-md-3 amet-sed w3l">
 				<h4>MORE INFO</h4>
 				<ul class="nav-bottom">
-						<li><a href="#">Lorem Ipsum</a></li>
-						<li><a href="#">Lorem Ipsum</a></li>
+						<li><a href="faq.html">FAQS</a></li>
+						<li><a href="forwarders.html">Forwarder</a></li>
 						<li><a href="contact.html">Location</a></li>
-						<li><a href="#">Lorem Ipsum</a></li>
-						<li><a href="#">Lorem Ipsum</a></li>
+						<li><a href="services.html">Other Services</a></li>
+
 					</ul>
 				</div>
 				<div class="col-md-3 amet-sed w3ls">
-					<h4>CATEGORIES</h4>
+					<h4>PRODUCTS</h4>
 					<ul class="nav-bottom">
-						<li><a href="#">Lorem Ipsum</a></li>
-						<li><a href="#">Lorem Ipsum</a></li>
-						<li><a href="#">Lorem Ipsum</a></li>
-						<li><a href="#">Lorem Ipsum</a></li>
-						<li><a href="#">Lorem Ipsum</a></li>
+						<li><a href="bananaproducts.html">Banana</a></li>
+						<li><a href="cocoaproducts.html">Cocoa</a></li>
+						<li><a href="coconutproducts.html">Coconut</a></li>
+						<li><a href="herbalproducts.html">Herbal</a></li>
+						<li><a href="mangoproducts.html">Mango</a></li>
+						<li><a href="pineappleproducts.html">Pineapple</a></li>
 					</ul>
 
 				</div>
