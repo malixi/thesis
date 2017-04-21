@@ -22,14 +22,12 @@
 		echo"<script>location.href='changepass.php';</script>";
 	}
 	else if
-
 	 ($rows = $result->fetch_assoc()) {
-     $password= md5(newpassword2);
 		$stmt2 = $dbconn->prepare('UPDATE admin SET userPass = ? WHERE userID = ?');
-		$stmt2->bind_param('si', $password, $passid);
+		$stmt2->bind_param('si', $newpassword2, $passid);
 		$stmt2->execute();
 
-		echo"<script>window.alert('Email updated.');</script>";
+		echo"<script>window.alert('Password updated.');</script>";
 		echo"<script>location.href='home.php';</script>";
 }
  else {

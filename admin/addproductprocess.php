@@ -2,7 +2,7 @@
 
 	session_start();
 	require_once('connector.php');
-	
+
 	$prodName=$_POST['addname'];
 	$prodPrice=$_POST['addprice'];
 	$prodImage=$_POST['fileToUpload'];

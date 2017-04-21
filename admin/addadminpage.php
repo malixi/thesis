@@ -4,19 +4,14 @@ require_once 'class.user.php';
 require_once 'connector.php';
 $user_home = new USER();
 
-if(!$user_home->is_logged_in()){
+if(!$user_home->is_logged_in())
+{
 	$user_home->redirect('index.php');
 }
 
 $stmt = $user_home->runQuery("SELECT * FROM admin WHERE userID=:uid");
 $stmt->execute(array(":uid"=>$_SESSION['userSession']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-if(isset($_GET['dosearch'])){
-    $query=$_GET['doseach'];
-    echo $query;
-}
-
 
 ?>
 
@@ -138,10 +133,7 @@ if(isset($_GET['dosearch'])){
                         <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="viewproductpage.php" class="active"><i class="fa fa-dashboard fa-fw"></i>Product</a>
-                    </li>
-										<li>
-                        <a href="viewadminpage.php"><i class="fa fa-dashboard fa-fw"></i>Admin</a>
+                        <a href="viewproductpage.php"><i class="fa fa-dashboard fa-fw"></i> Product</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
@@ -181,61 +173,35 @@ if(isset($_GET['dosearch'])){
 
             <!-- ... Your content goes here ... -->
             <div class="row">
-                <div class='col-lg-6'>
-                    <form role="form" action="addproductpage.php" method="post">
-                        <input type="submit" class="btn btn-primary" value="Add Products" name="submit">
+                <div class="col-lg-6">
+                    <form role="form" action="addadminprocess.php" method="post">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" class="form-control" name="addfirst" id="addname" required maxlength="50">
+                        </div>
+												<div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" class="form-control" name="addlast" id="addname" required maxlength="50">
+                        </div>
+                        <div class="form-group">
+                            <label>UserName</label>
+                            <input type="text" class="form-control" name="username" id="addprice" required>
+                        </div>
+												<div class="form-group">
+                            <label>Userstatus</label>
+                            <input type="hidden" value="Y" class="form-control" name="userstatus" id="userstatus" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" class="form-control" name="emailaddress" id="addquantity" required maxlength="100">
+                        </div>
+                        <input type="submit" class="btn btn-primary" value="Add" name="submit">
+                        <input type="reset" class="btn btn-default" value="Reset">
                         <hr>
                     </form>
                 </div>
-                <div class='col-lg-6'>
-                    <form role="form" action="searchproductpage.php" method="GET" class="form-inline">
-                            <label>Search</label>
-                            <input type="text" class="form-control" name="search" id="search" placeholder="Search">
-                            <input type="submit" class="btn btn-primary" value="Search">
-                        <hr>
-                    </form>
-                </div>
-
-                <?php            
-                $results = mysqli_query ($dbconn,'SELECT * FROM products');
-
-                echo "<table class='table table.bordered'>
-                    <thead>
-                        <tr>
-                            <th>Product ID</th>
-                            <th>Product Name</th>
-                            <th>Product Date Created</th>
-                            <th>Product Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>";
-
-                if($results->num_rows > 0) {
-
-                while($row = mysqli_fetch_array($results)){
-                    echo
-                        "<tr>
-                                <td>" .$row['productID']. "</td>
-                                <td>" .$row['name']. "</td>
-                                <td>" .$row['date_created']. "</td>
-                                <td>
-                                    <form method='POST' action='editproductpage.php'>
-                                        <input type='hidden' name='PNAME' value='".$row['productID']."' />
-                                        <input type='submit' class='btn btn-primary col-lg-6' value='Edit' name='submit'>
-                                    </form>
-                                    <form method='POST' action='delproductprocess.php'>
-                                        <input type='hidden' name='PNAME' value='".$row['productID']."' />
-                                        <input type='submit' class='btn btn-primary col-lg-6' value='Delete' name='submit'>
-                                    </form>
-                                </td>
-                            </tr>";
-                    }
-                }
-
-                echo "</tbody>
-                    </table>";            
-                ?>
             </div>
+
         </div>
     </div>
 

@@ -12,15 +12,17 @@ if($reg_user->is_logged_in()!="")
 
 if(isset($_POST['btn-signup']))
 {
+	$fname = trim($_POST['txtfname']);
+	$lname = trim($_POST['txtlname']);
 	$uname = trim($_POST['txtuname']);
 	$email = trim($_POST['txtemail']);
 	$upass = trim($_POST['txtpass']);
 	$code = md5(uniqid(rand()));
-	
+
 	$stmt = $reg_user->runQuery("SELECT * FROM admin WHERE userEmail=:email_id");
 	$stmt->execute(array(":email_id"=>$email));
 	$row = $stmt->fetch(PDO::FETCH_ASSOC);
-	
+
 	if($stmt->rowCount() > 0)
 	{
 		$msg = "
@@ -32,44 +34,44 @@ if(isset($_POST['btn-signup']))
 	}
 	else
 	{
-		if($reg_user->register($uname,$email,$upass,$code))
-		{			
-			$id = $reg_user->lasdID();		
+		if($reg_user->register($fname,$lname,$uname,$email,$upass,$code))
+		{
+			$id = $reg_user->lasdID();
 			$key = base64_encode($id);
 			$id = $key;
-			
-			$message = "					
-						Hello $uname,
+
+			$message = "
+						Hello $fname $lname,
 						<br /><br />
 						Welcome to Gray Enterprise!<br/>
 						To complete your registration  please , just click following link<br/>
 						<br /><br />
-						<a href='http://localhost/ThesisEtoNaTalaga/admin/verify.php?id=$id&code=$code'>Click HERE to Activate :)</a>
+						<a href='http://localhost/thesis/admin/verify.php?id=$id&code=$code'>Click HERE to Activate :)</a>
 						<br /><br />
 						Thanks,";
-						
+
 			$subject = "Confirm Registration";
-						
-			$reg_user->send_mail($email,$message,$subject);	
+
+			$reg_user->send_mail($email,$message,$subject);
 			$msg = "
 					<div class='alert alert-success'>
 						<button class='close' data-dismiss='alert'>&times;</button>
 						<strong>Success!</strong>  We've sent an email to $email.
-                    Please click on the confirmation link in the email to create your account. 
+                    Please click on the confirmation link in the email to create your account.
 			  		</div>
 					";
 		}
 		else
 		{
 			echo "sorry , Query could no execute...";
-		}		
+		}
 	}
 }
 ?>
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Signup | Coding Cage</title>
+    <title>Signup | Llanes Farm </title>
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
@@ -85,6 +87,8 @@ if(isset($_POST['btn-signup']))
 				<?php if(isset($msg)) echo $msg;  ?>
       <form class="form-signin" method="post">
         <h2 class="form-signin-heading">Sign Up</h2><hr />
+				<input type="text" class="input-block-level" placeholder="First Name" name="txtfname" required />
+				<input type="text" class="input-block-level" placeholder="Last Name" name="txtlname" required />
         <input type="text" class="input-block-level" placeholder="Username" name="txtuname" required />
         <input type="email" class="input-block-level" placeholder="Email address" name="txtemail" required />
         <input type="password" class="input-block-level" placeholder="Password" name="txtpass" required />

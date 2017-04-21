@@ -4,19 +4,14 @@ require_once 'class.user.php';
 require_once 'connector.php';
 $user_home = new USER();
 
-if(!$user_home->is_logged_in()){
+if(!$user_home->is_logged_in())
+{
 	$user_home->redirect('index.php');
 }
 
 $stmt = $user_home->runQuery("SELECT * FROM admin WHERE userID=:uid");
 $stmt->execute(array(":uid"=>$_SESSION['userSession']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-if(isset($_GET['dosearch'])){
-    $query=$_GET['doseach'];
-    echo $query;
-}
-
 
 ?>
 
@@ -138,10 +133,7 @@ if(isset($_GET['dosearch'])){
                         <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="viewproductpage.php" class="active"><i class="fa fa-dashboard fa-fw"></i>Product</a>
-                    </li>
-										<li>
-                        <a href="viewadminpage.php"><i class="fa fa-dashboard fa-fw"></i>Admin</a>
+                        <a href="viewproductpage.php"><i class="fa fa-dashboard fa-fw"></i> Product</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
@@ -171,71 +163,74 @@ if(isset($_GET['dosearch'])){
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Add Product</h1>
+                    <h1 class="page-header">Edit Admin</h1>
                 </div>
             </div>
-
-            <?php
-
-            ?>
 
             <!-- ... Your content goes here ... -->
-            <div class="row">
-                <div class='col-lg-6'>
-                    <form role="form" action="addproductpage.php" method="post">
-                        <input type="submit" class="btn btn-primary" value="Add Products" name="submit">
+                <?php
+                    $userID=$_POST['UNAME'];
+                    $result = mysqli_query($dbconn ,"SELECT * FROM admin WHERE userID = '". $userID . "' LIMIT 1");
+                    $row = mysqli_fetch_assoc($result);
+                    echo "<div class='col-lg-6'>
+                    <form role='form' action='editadminprocess.php' method='post'>
+                        <div class='form-group'>
+                            <label>Product ID</label>
+                            <input type='number' class='form-control' maxlength='6' value=".$row['userID']." required readonly>
+                        </div>
+                        <div class='form-group'>
+                            <label>First Name</label>
+                            <input type='text' class='form-control' maxlength='50' value=".$row['FirstName']." required readonly>
+                        </div>
+												<div class='form-group'>
+                            <label>Last Name</label>
+                            <input type='text' class='form-control' maxlength='50' value=".$row['LastName']." required readonly>
+                        </div>
+
+												<div class='form-group'>
+                            <label>User Name</label>
+                            <input type='text' class='form-control' maxlength='50' value=".$row['userName']." required readonly>
+                        </div>
+												<div class='form-group'>
+                            <label>Email address</label>
+                            <input type='text' class='form-control' maxlength='50' value=".$row['userEmail']." required readonly>
+                        </div>
                         <hr>
                     </form>
-                </div>
-                <div class='col-lg-6'>
-                    <form role="form" action="searchproductpage.php" method="GET" class="form-inline">
-                            <label>Search</label>
-                            <input type="text" class="form-control" name="search" id="search" placeholder="Search">
-                            <input type="submit" class="btn btn-primary" value="Search">
-                        <hr>
-                    </form>
-                </div>
-
-                <?php            
-                $results = mysqli_query ($dbconn,'SELECT * FROM products');
-
-                echo "<table class='table table.bordered'>
-                    <thead>
-                        <tr>
-                            <th>Product ID</th>
-                            <th>Product Name</th>
-                            <th>Product Date Created</th>
-                            <th>Product Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>";
-
-                if($results->num_rows > 0) {
-
-                while($row = mysqli_fetch_array($results)){
-                    echo
-                        "<tr>
-                                <td>" .$row['productID']. "</td>
-                                <td>" .$row['name']. "</td>
-                                <td>" .$row['date_created']. "</td>
-                                <td>
-                                    <form method='POST' action='editproductpage.php'>
-                                        <input type='hidden' name='PNAME' value='".$row['productID']."' />
-                                        <input type='submit' class='btn btn-primary col-lg-6' value='Edit' name='submit'>
-                                    </form>
-                                    <form method='POST' action='delproductprocess.php'>
-                                        <input type='hidden' name='PNAME' value='".$row['productID']."' />
-                                        <input type='submit' class='btn btn-primary col-lg-6' value='Delete' name='submit'>
-                                    </form>
-                                </td>
-                            </tr>";
-                    }
-                }
-
-                echo "</tbody>
-                    </table>";            
+                </div>";
                 ?>
+                <div class="row">
+                <div class="col-lg-6">
+                    <form role="form" action="editadminprocess.php" method="post">
+                        <div class="form-group">
+                            <label>Product ID</label>
+                            <input type="number" class="form-control" name="editID" id="editID" <?php echo "value='".$row['userID']."'" ?> maxlength="6" required readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" class="form-control" name="firstname1" id="editname" required maxlength="50">
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" class="form-control" name="lastname" id="editprice" required>
+                        </div>
+												<div class="form-group">
+														<label>User Name</label>
+														<input type="text" class="form-control" name="username" id="editprice" required>
+												</div>
+												<div class="form-group">
+														<label>Email Address</label>
+														<input type="email" class="form-control" name="emailadd" id="editprice" required>
+												</div>
+
+                        <input type="submit" class="btn btn-primary" value="Edit" name="submit">
+                        <input type="reset" class="btn btn-default" value="Reset">
+                        <hr>
+                    </form>
+                </div>
+
             </div>
+
         </div>
     </div>
 
