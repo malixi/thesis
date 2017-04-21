@@ -5,7 +5,7 @@ require_once 'connector.php';
 $user_home = new USER();
 
 if(!$user_home->is_logged_in()){
-	$user_home->redirect('index.php');
+    $user_home->redirect('index.php');
 }
 
 $stmt = $user_home->runQuery("SELECT * FROM admin WHERE userID=:uid");
@@ -16,6 +16,8 @@ if(isset($_GET['dosearch'])){
     $query=$_GET['doseach'];
     echo $query;
 }
+
+$search = $_GET['search'];
 
 
 ?>
@@ -193,8 +195,9 @@ if(isset($_GET['dosearch'])){
                     </form>
                 </div>
 
-                <?php            
-                $results = mysqli_query ($dbconn,'SELECT * FROM products');
+                <?php 
+                
+                    $results = mysqli_query ($dbconn,'SELECT * FROM products WHERE name LIKE "%'.$search.'%"');
 
                 echo "<table class='table table.bordered'>
                     <thead>
@@ -230,7 +233,7 @@ if(isset($_GET['dosearch'])){
                 }
 
                 echo "</tbody>
-                    </table>";            
+                    </table>";
                 ?>
             </div>
         </div>
