@@ -178,10 +178,6 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
             </div>
 
             <form class="col-md-5"  action="changemailprocess.php" method="post">
-              <div class="form-group">
-                  <label for="exampleInputEmail1">Enter your current email address</label>
-                  <input type="text" class="form-control input-lg" placeholder="user@gmail.com" name="oldemail">
-              </div>
 
               <div class="form-group">
                   <label for="exampleInputEmail1">Enter new email address</label>

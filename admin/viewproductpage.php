@@ -143,6 +143,9 @@ if(isset($_GET['dosearch'])){
 										<li>
                         <a href="viewadminpage.php"><i class="fa fa-dashboard fa-fw"></i>Admin</a>
                     </li>
+										<li>
+                        <a href="changemail.php" ><i class="fa fa-dashboard fa-fw"></i> Change email</a>
+                    </li>
                     <li>
                         <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
@@ -196,7 +199,7 @@ if(isset($_GET['dosearch'])){
                     </form>
                 </div>
 
-                <?php            
+                <?php
                 $results = mysqli_query ($dbconn,'SELECT * FROM products');
 
                 echo "<table class='table table.bordered'>
@@ -233,7 +236,7 @@ if(isset($_GET['dosearch'])){
                 }
 
                 echo "</tbody>
-                    </table>";            
+                    </table>";
                 ?>
             </div>
         </div>

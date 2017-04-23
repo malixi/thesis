@@ -138,6 +138,9 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 										<li>
                         <a href="viewadminpage.php" class="active"><i class="fa fa-dashboard fa-fw"></i>Admin</a>
                     </li>
+										<li>
+                        <a href="changemail.php" ><i class="fa fa-dashboard fa-fw"></i> Change email</a>
+                    </li>
                     <li>
                         <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
@@ -206,11 +209,11 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
                                 <td>
                                     <form method='POST' action='editadminpage.php'>
                                         <input type='hidden' name='UNAME' value='".$row['userID']."' />
-                                        <input type='submit' class='btn btn-primary' value='Edit' name='submit'>
+                                        <input type='submit' class='btn btn-primary col-lg-6' value='Edit' name='submit'>
                                     </form>
                                     <form method='POST' action='deladminprocess.php'>
                                         <input type='hidden' name='UNAME' value='".$row['userID']."' />
-                                        <input type='submit' class='btn btn-primary' value='Delete' name='submit'>
+                                        <input type='submit' class='btn btn-primary col-lg-6' value='Delete' name='submit'>
                                     </form>
                                 </td>
                             </tr>";

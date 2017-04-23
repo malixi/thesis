@@ -137,6 +137,9 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 										<li>
                         <a href="viewadminpage.php" ><i class="fa fa-dashboard fa-fw"></i> Admin</a>
                     </li>
+										<li>
+                        <a href="changemail.php" ><i class="fa fa-dashboard fa-fw"></i> Change email</a>
+                    </li>
                     <li>
                         <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
