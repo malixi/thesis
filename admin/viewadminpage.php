@@ -4,19 +4,14 @@ require_once 'class.user.php';
 require_once 'connector.php';
 $user_home = new USER();
 
-if(!$user_home->is_logged_in()){
+if(!$user_home->is_logged_in())
+{
 	$user_home->redirect('index.php');
 }
 
 $stmt = $user_home->runQuery("SELECT * FROM admin WHERE userID=:uid");
 $stmt->execute(array(":uid"=>$_SESSION['userSession']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-if(isset($_GET['dosearch'])){
-    $query=$_GET['doseach'];
-    echo $query;
-}
-
 
 ?>
 
@@ -138,10 +133,10 @@ if(isset($_GET['dosearch'])){
                         <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="viewproductpage.php" class="active"><i class="fa fa-dashboard fa-fw"></i>Product</a>
+                        <a href="viewproductpage.php"><i class="fa fa-dashboard fa-fw"></i>Product</a>
                     </li>
 										<li>
-                        <a href="viewadminpage.php"><i class="fa fa-dashboard fa-fw"></i>Admin</a>
+                        <a href="viewadminpage.php" class="active"><i class="fa fa-dashboard fa-fw"></i>Admin</a>
                     </li>
 										<li>
                         <a href="changemail.php" ><i class="fa fa-dashboard fa-fw"></i> Change email</a>
@@ -174,7 +169,7 @@ if(isset($_GET['dosearch'])){
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Add Product</h1>
+                    <h1 class="page-header">Add Admin</h1>
                 </div>
             </div>
 
@@ -184,31 +179,21 @@ if(isset($_GET['dosearch'])){
 
             <!-- ... Your content goes here ... -->
             <div class="row">
-                <div class='col-lg-6'>
-                    <form role="form" action="addproductpage.php" method="post">
-                        <input type="submit" class="btn btn-primary" value="Add Products" name="submit">
-                        <hr>
-                    </form>
-                </div>
-                <div class='col-lg-6'>
-                    <form role="form" action="searchproductpage.php" method="GET" class="form-inline">
-                            <label>Search</label>
-                            <input type="text" class="form-control" name="search" id="search" placeholder="Search">
-                            <input type="submit" class="btn btn-primary" value="Search">
-                        <hr>
-                    </form>
-                </div>
+                <form role="form" action="addadminpage.php" method="post">
+                    <input type="submit" class="btn btn-primary" value="Add Admin" name="submit">
+                    <hr>
+                </form>
 
                 <?php
-                $results = mysqli_query ($dbconn,'SELECT * FROM products');
+                $results = mysqli_query ($dbconn,'SELECT * FROM admin');
 
                 echo "<table class='table table.bordered'>
                     <thead>
                         <tr>
                             <th>Product ID</th>
-                            <th>Product Name</th>
-                            <th>Product Date Created</th>
-                            <th>Product Actions</th>
+                            <th>First Name</th>
+														<th>Last Name</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>";
@@ -218,16 +203,16 @@ if(isset($_GET['dosearch'])){
                 while($row = mysqli_fetch_array($results)){
                     echo
                         "<tr>
-                                <td>" .$row['productID']. "</td>
-                                <td>" .$row['name']. "</td>
-                                <td>" .$row['date_created']. "</td>
+                                <td>" .$row['userID']. "</td>
+                                <td>" .$row['FirstName']. "</td>
+																<td>" .$row['LastName']. "</td>
                                 <td>
-                                    <form method='POST' action='editproductpage.php'>
-                                        <input type='hidden' name='PNAME' value='".$row['productID']."' />
+                                    <form method='POST' action='editadminpage.php'>
+                                        <input type='hidden' name='UNAME' value='".$row['userID']."' />
                                         <input type='submit' class='btn btn-primary col-lg-6' value='Edit' name='submit'>
                                     </form>
-                                    <form method='POST' action='delproductprocess.php'>
-                                        <input type='hidden' name='PNAME' value='".$row['productID']."' />
+                                    <form method='POST' action='deladminprocess.php'>
+                                        <input type='hidden' name='UNAME' value='".$row['userID']."' />
                                         <input type='submit' class='btn btn-primary col-lg-6' value='Delete' name='submit'>
                                     </form>
                                 </td>
@@ -239,6 +224,7 @@ if(isset($_GET['dosearch'])){
                     </table>";
                 ?>
             </div>
+
         </div>
     </div>
 

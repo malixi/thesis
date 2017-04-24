@@ -5,7 +5,7 @@ require_once 'connector.php';
 $user_home = new USER();
 
 if(!$user_home->is_logged_in()){
-	$user_home->redirect('index.php');
+    $user_home->redirect('index.php');
 }
 
 $stmt = $user_home->runQuery("SELECT * FROM admin WHERE userID=:uid");
@@ -16,6 +16,8 @@ if(isset($_GET['dosearch'])){
     $query=$_GET['doseach'];
     echo $query;
 }
+
+$search = $_GET['search'];
 
 
 ?>
@@ -138,13 +140,7 @@ if(isset($_GET['dosearch'])){
                         <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="viewproductpage.php" class="active"><i class="fa fa-dashboard fa-fw"></i>Product</a>
-                    </li>
-										<li>
-                        <a href="viewadminpage.php"><i class="fa fa-dashboard fa-fw"></i>Admin</a>
-                    </li>
-										<li>
-                        <a href="changemail.php" ><i class="fa fa-dashboard fa-fw"></i> Change email</a>
+                        <a href="viewproductpage.php"><i class="fa fa-dashboard fa-fw"></i>Product</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
@@ -178,7 +174,7 @@ if(isset($_GET['dosearch'])){
                 </div>
             </div>
 
-            <?php
+            <?php 
 
             ?>
 
@@ -199,8 +195,9 @@ if(isset($_GET['dosearch'])){
                     </form>
                 </div>
 
-                <?php
-                $results = mysqli_query ($dbconn,'SELECT * FROM products');
+                <?php 
+                
+                    $results = mysqli_query ($dbconn,'SELECT * FROM products WHERE name LIKE "%'.$search.'%"');
 
                 echo "<table class='table table.bordered'>
                     <thead>

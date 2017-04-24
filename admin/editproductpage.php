@@ -168,7 +168,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
             </div>
 
             <!-- ... Your content goes here ... -->
-                <?php 
+                <?php
                     $prodID=$_POST['PNAME'];
                     $result = mysqli_query($dbconn ,"SELECT * FROM products WHERE productID = '". $prodID . "' LIMIT 1");
                     $row = mysqli_fetch_assoc($result);

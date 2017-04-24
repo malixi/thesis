@@ -24,7 +24,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Startmin - Bootstrap Admin Theme</title>
+    <title>Llanes Farm | Admin</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -132,7 +132,13 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
                         <a href="#" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="viewproductpage.php" class="active"><i class="fa fa-dashboard fa-fw"></i> Products</a>
+                        <a href="viewproductpage.php"><i class="fa fa-dashboard fa-fw"></i> Products</a>
+                    </li>
+										<li>
+                        <a href="viewadminpage.php" ><i class="fa fa-dashboard fa-fw"></i> Admin</a>
+                    </li>
+										<li>
+                        <a href="changemail.php" ><i class="fa fa-dashboard fa-fw"></i> Change email</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>

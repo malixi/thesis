@@ -26,14 +26,16 @@ class USER
 		return $stmt;
 	}
 
-	public function register($uname,$email,$upass,$code)
+	public function register($fname,$lname,$uname,$email,$upass,$code)
 	{
 		try
 		{
 			$password = md5($upass);
-			$stmt = $this->conn->prepare("INSERT INTO admin(userName,userEmail,userPass,tokenCode)
-			                                             VALUES(:user_name, :user_mail, :user_pass, :active_code)");
-			$stmt->bindparam(":user_name",$uname);
+			$stmt = $this->conn->prepare("INSERT INTO admin(FirstName,LastName,userName,userEmail,userPass,tokenCode)
+			                                             VALUES(:user_fname,:user_lname,:user_name, :user_mail, :user_pass, :active_code)");
+			$stmt->bindparam(":user_fname",$fname);
+      $stmt->bindparam(":user_lname",$lname);
+      $stmt->bindparam(":user_name",$uname);
 			$stmt->bindparam(":user_mail",$email);
 			$stmt->bindparam(":user_pass",$password);
 			$stmt->bindparam(":active_code",$code);
@@ -45,6 +47,7 @@ class USER
 			echo $ex->getMessage();
 		}
 	}
+
 
 	public function login($email,$upass)
 	{
